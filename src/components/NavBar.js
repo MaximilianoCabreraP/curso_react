@@ -1,18 +1,22 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import  '../styles/Cart.css';
+import CartWidget from './CartWidget';
 
-function NavBar(){
+const NavBar = () => {
     return(
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <span class="navbar-brand">Bidcom</span>
-            <div class="navbar-collapse collapse" id="responsive-navbar-nav">
-                <div class="mr-auto navbar-nav">
-                    <a href="#" class="nav-link">Computación</a>
-                    <a href="#" class="nav-link">Fotografía y Video</a>
-                    <a href="#" class="nav-link">Audio</a>
+        <>
+            <nav className="navbar navbar-light bg-light">
+                <ul className="menu row">
+                    <li className="col"><a href="#" className="nav-link active">Computación</a></li>
+                    <li className="col"><a href="#" className="nav-link">Fotografía</a></li>
+                    <li className="col"><a href="#" className="nav-link">Audio</a></li>
+                </ul>
+                <div className="navbar-text">
+                    <CartWidget />
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </>
     )
 }
 export default NavBar

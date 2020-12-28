@@ -1,0 +1,26 @@
+nav{
+  text-align: center;
+}
+.logo{
+  max-width: 80%;
+}
+.main{
+    height: 200px;
+    text-align: center;
+}
+.menu,
+.menu li{
+  list-style: none;
+  padding:0;
+  margin:0;
+}
+  .menu li .nav-link {
+    color: rgba(0, 0, 0, 0.5);
+  }
+    .menu li .nav-link.active,
+    .menu li .nav-link:hover {
+      color: rgba(0, 0, 0, 1);
+    }
+  .menu .navbar-text {
+    margin-right: 10px;
+  }

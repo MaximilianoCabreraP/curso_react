@@ -1,0 +1,9 @@
+.cart-icon{
+  width:26px;
+  display: block;
+  position: relative;
+}
+.cart-icon img{
+  max-width:100%;
+  opacity: 0.8;
+}

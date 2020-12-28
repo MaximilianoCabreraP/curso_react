@@ -1,16 +1,17 @@
 import React from 'react'
-import NavBar from './components/NavBar'
+import Header from "./components/Header"
+import Main from "./components/Main"
+import Footer from "./components/Footer"
+import  './styles/App.css';
 
-function App(){
+const App = () => {
     return(
         <>
-            <header>
-                <NavBar/>
-            </header>
-            <h2>Las Ofertas de la semana</h2>
-            <footer>
-                <p>&copy; Copyright 2020</p>
-            </footer>
+            <div>
+                <Header />
+                <Main />
+                <Footer />
+            </div>
         </>
     )
 }
