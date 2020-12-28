@@ -1,0 +1,27 @@
+.item-count{
+    border-radius: 4px;
+    padding: 0 4px;
+    width:10%;
+    margin:15px auto;
+}
+
+.input-count{
+    border:0px;    
+    outline: none;
+    text-align:center;
+}
+
+.img-list-container{
+    /* height:200px; */
+    text-align:center
+}
+
+.btn-less1 {
+    color: #999;
+    cursor: unset!important;
+}
+
+.btn-more9 {
+    color: #999;
+    cursor: unset!important;
+}

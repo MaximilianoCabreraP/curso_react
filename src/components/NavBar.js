@@ -8,9 +8,9 @@ const NavBar = () => {
         <>
             <nav className="navbar navbar-light bg-light">
                 <ul className="menu row">
-                    <li className="col"><a href="#" className="nav-link active">Computación</a></li>
-                    <li className="col"><a href="#" className="nav-link">Fotografía</a></li>
-                    <li className="col"><a href="#" className="nav-link">Audio</a></li>
+                    <li className="col"><a href="#computacion" className="nav-link active">Computación</a></li>
+                    <li className="col"><a href="#fotografia" className="nav-link">Fotografía</a></li>
+                    <li className="col"><a href="#audio" className="nav-link">Audio</a></li>
                 </ul>
                 <div className="navbar-text">
                     <CartWidget />

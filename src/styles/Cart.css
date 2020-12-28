@@ -7,3 +7,8 @@
   max-width:100%;
   opacity: 0.8;
 }
+.cart-icon .quantity{
+  position: absolute;
+  top: -5px;
+  right: -10px;
+}
