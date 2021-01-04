@@ -1,7 +1,30 @@
+.product-grid{
+    margin:35px 0;
+}
+.item-list{
+    padding: 0 30px;
+}
+.item-list img{
+    max-width:100%;
+    text-align: center;
+}
+.item-list h3{
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin:5px 0 15px 0;
+}
+.item-list .price-item{
+    font-size: 20px;
+}
+.item-list a:hover{
+    text-decoration: none;
+}
+
 .item-count{
     border-radius: 4px;
     padding: 0 4px;
-    width:10%;
+    width:50%;
     margin:15px auto;
 }
 
