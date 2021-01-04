@@ -5,7 +5,7 @@ const Main = () => {
     return (
         <>
             <div className="main">
-                <ItemListContainer greeting = "Texto provisional desde CartWidget" />
+                <ItemListContainer greeting = "Listado de Productos" />
             </div>
         </>
     )
