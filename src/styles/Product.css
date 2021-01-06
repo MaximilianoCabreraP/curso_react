@@ -28,23 +28,45 @@
     margin:15px auto;
 }
 
+.stock{
+    font-size:15px;
+    color:#999;
+    margin-bottom:-5px;
+}
+.separador{
+    height:40px;
+}
+
+.detail-content h1{
+    font-size: 24px;
+    font-weight: 600;
+    color:#333;
+}
+.detail-content .price-item{
+    font-size: 33px;
+    font-weight: 300;
+}
+.detail-content .stock{
+    font-size:15px;
+    color:#999;
+    margin-bottom:-5px;
+}
+.photo-detail img{
+    max-width:100%;
+    max-height: 320px;
+    text-align: center;
+}
+
 .input-count{
     border:0px;    
     outline: none;
     text-align:center;
 }
-
-.img-list-container{
-    /* height:200px; */
-    text-align:center
-}
-
 .btn-less1 {
     color: #999;
     cursor: unset!important;
 }
-
-.btn-more9 {
+.btn-more-max {
     color: #999;
     cursor: unset!important;
 }
