@@ -2,8 +2,9 @@
     margin:35px 0;
 }
 .item-list{
-    padding: 0 30px;
+    padding: 20px 40px;
 }
+
 .item-list img{
     max-width:100%;
     text-align: center;
@@ -27,6 +28,17 @@
     width:50%;
     margin:15px auto;
 }
+
+.img-list-container{
+    height:200px;
+    text-align:center
+}
+.img-list-container img{
+    text-align:center;
+    width: 90%;
+    height: 90%;    
+    object-fit: contain;    
+}  
 
 .stock{
     font-size:15px;
@@ -69,4 +81,12 @@
 .btn-more-max {
     color: #999;
     cursor: unset!important;
+}
+
+.title-category{
+    font-size: 28px;
+    text-transform: capitalize;
+    color: #333;
+    display:block;
+    text-align: center;
 }

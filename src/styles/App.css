@@ -5,6 +5,7 @@ nav{
   max-width: 80%;
 }
 .main{
+    min-height: 300px;
     text-align: center;
 }
 .menu,
