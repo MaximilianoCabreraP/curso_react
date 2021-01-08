@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../styles/Product.css'
+import '../../styles/Product.css'
 
 const ItemCount = ({ id, stock, initial = 1 }) => {
   	const [contador, setContador] = useState(initial);
@@ -32,7 +32,7 @@ const ItemCount = ({ id, stock, initial = 1 }) => {
 			</span>
 			<button
 				onClick={() => { sumarCantidad(); }}
-				className={`btn-count btn-more${contador} col-3`} >
+				className={`btn-count  btn-more${contador===stock?"-max":""} col-3`} >
 				+
 			</button>
 			<button

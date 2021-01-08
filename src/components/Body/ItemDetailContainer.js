@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ItemDetail from './ItemDetail'
 
-const ItemDetailContainer = ({producto}) => {
+
+const ItemDetailContainer = ({productos}) => {
+    const [items, setItems] = useState([]);
+    useEffect(() => {
+        const listProducts = new Promise((resolver, rechazar) => {
+            setTimeout(() => {
+                resolver(productos)
+                rechazar("No se pudieron cargar los productos")
+            }, 2000)
+        })
+
+        listProducts.then((resultado)=>{
+            setItems(resultado);
+        }).catch((resultado) => {
+            console.log({ resultado });
+        });
+    });
+
     return (
         <div className="container">
             <h1>ItemDetailContainer</h1>
-            {producto.length ? (
-                producto.map((item) => (
+            {items.length ? (
+                items.map((item) => (
                     item.id === 4?
                         <ItemDetail 
                             key={item.id}
