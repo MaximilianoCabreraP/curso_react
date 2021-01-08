@@ -35,7 +35,8 @@ const ItemDetailContainer = ({productos}) => {
                                     price={item[0].price}
                                     link={item[0].link}
                                     photo={item[0].photo}
-                                    stock={item[0].stock} />
+                                    stock={item[0].stock}
+                                    categoria={item[0].nombre_categoria} />
                     }
                 </div>
             )
