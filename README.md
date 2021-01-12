@@ -4,7 +4,8 @@
     En la página principal se pueden ver un listado de productos de varias categorías. Por el momento este listado se encuentra en un array, y por medio de una promesa con un delay de 2 segundos se simula un llamado a una API.
 
     En la parte superior tenemos la barra de navegación (NavBar) donde se encuentran las categorías que se definen de forma dinámica dependiendo del listado de productos.
-
+</span>
+<span>
     Al hacer click en alguna de estas categorías se muestra una lista filtrada de los productos que corresponden a ella. Para esto se utilizó NavLinks para el Routing.
 
     Al seleccionar un item de alguno de los listados, se nos mostrará el detalle del mismo, donde se podrá seleccionar, dependiendo del stock disponible, la cantidad de unidades que se desea comprar. Por el momento esto se informa en un console.log.
