@@ -1,17 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "../../styles/Product.css"
 
 const Item = ({ id, title, price, link, photo, stock }) => {
   	return (
-    	<div className="item-list col-sm-4">
-      		<a href={link}>
-        		<img src={photo} alt={title} />
-        		<h3>{title}</h3>
-      		</a>
-            <p>Descripción del producto {id}</p>
+		<div className="item-list col-sm-3">
+			<Link to={link}>
+				<div className="img-list-container">
+					<img src={photo} alt={title} />
+				</div>
+				<h3>{title.substr(0, 40)}</h3>
+			</Link>
+			<p>Descripción del producto {id}</p>
 			<div className="text-center stock">({stock} disponibles)</div>
 			<div className="col-12 price-item align-self-center">${price}</div>
-    	</div>
+		</div>
 	)
 }
 

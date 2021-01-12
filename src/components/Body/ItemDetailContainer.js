@@ -1,49 +1,38 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ItemDetail from './ItemDetail'
-
+import { useParams } from 'react-router-dom'
+import NotFound from './NotFound';
+import Loader from './Loader';
 
 const ItemDetailContainer = ({productos}) => {
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        const listProducts = new Promise((resolver, rechazar) => {
-            setTimeout(() => {
-                resolver(productos)
-                rechazar("No se pudieron cargar los productos")
-            }, 2000)
-        })
+    const { id } = useParams()
 
-        listProducts.then((resultado)=>{
-            setItems(resultado);
-        }).catch((resultado) => {
-            console.log({ resultado });
-        });
-    });
+    const productoFiltrado = productos.filter(i => i.id === parseInt(id))
+    const item = productoFiltrado.length === 0? "no existe" : productoFiltrado;
 
-    return (
-        <div className="container">
-            <h1>ItemDetailContainer</h1>
-            {items.length ? (
-                items.map((item) => (
-                    item.id === 4?
-                        <ItemDetail 
-                            key={item.id}
-                            id={item.id}
-                            title={item.title}
-                            price={item.price}
-                            photo={item.photo}
-                            stock={item.stock}/>
-                        :
-                        ""
-                ))
-            ):(
+    if(item.length > 0){
+        if(item !== "no existe"){
+            return (
                 <div className="container">
-                    <div className="row">
-                        <div className="col-12 text-center">Cargando productos de ItemDetailContainer...</div>
-                    </div>
+                    {
+                        <ItemDetail 
+                                    key={item[0].id}
+                                    id={item[0].id}
+                                    title={item[0].title}
+                                    price={item[0].price}
+                                    link={item[0].link}
+                                    photo={item[0].photo}
+                                    stock={item[0].stock}
+                                    categoria={item[0].nombreCategoria} />
+                    }
                 </div>
-            )}
-        </div>
-    )
+            )
+        }else{
+            return <NotFound />
+        }
+    }else{
+        return <Loader />
+    }
 }
 
 export default ItemDetailContainer
