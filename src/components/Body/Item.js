@@ -5,7 +5,7 @@ import "../../styles/Product.css"
 const Item = ({ id, title, price, link, photo, stock }) => {
   	return (
 		<div className="item-list col-sm-3">
-			<Link to={`${link}`}>
+			<Link to={link}>
 				<div className="img-list-container">
 					<img src={photo} alt={title} />
 				</div>

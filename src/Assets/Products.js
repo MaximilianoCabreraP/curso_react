@@ -48,15 +48,6 @@ const Productos = [
         stock: 9,
         nombreCategoria: "audio"
     }
-    //, {
-    //     id: 7,
-    //     title: "Prueba",
-    //     price: 15500,
-    //     link: "/item/7",
-    //     photo: "https://media.kingston.com/hyperx/product/hx-product-headset-cloud-flight-s-2-zm-lg.jpg",
-    //     stock: 11,
-    //     nombreCategoria: "prueba"
-    // }
 ];
 
 export default Productos

@@ -2,7 +2,8 @@ nav{
   text-align: center;
 }
 .logo{
-  max-width: 80%;
+  margin-top: -5%;
+  max-width: 90%;
 }
 .main{
     min-height: 300px;

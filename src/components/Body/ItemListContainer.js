@@ -19,15 +19,7 @@ const ItemListContainer = ({ greeting, productos }) => {
                         listadoProductos.length?
                         (
                             listadoProductos.map((item) =>(
-                                <ItemList 
-                                    key={item.id}
-                                    id={item.id}
-                                    title={item.title}
-                                    price={item.price}
-                                    link={item.link}
-                                    photo={item.photo}
-                                    stock={item.stock}
-                                />
+                                <ItemList key={item.id} item={item} />
                             ))
                         ):(
                             <div className="container">

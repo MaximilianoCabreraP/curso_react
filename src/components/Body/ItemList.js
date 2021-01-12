@@ -2,16 +2,16 @@ import React from "react"
 import Item from "./Item"
 import "../../styles/Product.css"
 
-const ItemList = ({ id, title, price, link, photo, stock }) => {
+const ItemList = ({ item }) => {
     return (
             <Item
-                key={id}
-                id={id}
-                title={title}
-                price={price}
-                link={link}
-                photo={photo}
-                stock={stock}
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                price={item.price}
+                link={item.link}
+                photo={item.photo}
+                stock={item.stock}
             />
     )
 }
