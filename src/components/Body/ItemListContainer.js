@@ -1,42 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ItemList from './ItemList'
 import { useParams } from 'react-router-dom'
 
-
 const ItemListContainer = ({ greeting, productos }) => {
-    const { nombre_categoria } = useParams()
-    const [items, setItems] = useState([]);
-
-    useEffect(() => {
-        const listProducts = new Promise((resolver, rechazar) => {
-            setTimeout(() => {
-                resolver(productos)
-                rechazar("No se pudieron cargar los productos")
-            }, 2000)
-        })
-        listProducts.then((resultado)=>{
-            if(nombre_categoria){
-                const productosCategoria = resultado.filter((items) => items.nombre_categoria === nombre_categoria)
-                setItems(productosCategoria)
-            }else{
-                resultado.sort(() => Math.random() - 0.5)
-                setItems(resultado)
-            }
-        }).catch((resultado) =>{
-            console.log({ resultado });
-        })
-    }, [productos, nombre_categoria])
-
+    const { nombreCategoria } = useParams()
+    
+    const listadoProductos = nombreCategoria?
+                                productos.filter((item) => item.nombreCategoria === nombreCategoria) :
+                                productos.sort(() => Math.random() - 0.5)
+    
     return (
         <>
             <h4> { greeting } </h4>
             <div className="container">
-                <h1 className="title-category">{nombre_categoria}</h1>
+                <h1 className="title-category">{nombreCategoria}</h1>
                 <div className="row product-grid">
                     {
-                        items.length?
+                        listadoProductos.length?
                         (
-                            items.map((item) =>(
+                            listadoProductos.map((item) =>(
                                 <ItemList 
                                     key={item.id}
                                     id={item.id}
