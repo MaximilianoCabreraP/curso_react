@@ -2,9 +2,8 @@
 
 <p>
     El proyecto es un ecommerce que se encuentra en proceso.<br><br>
-    En la página principal se pueden ver un listado de productos de varias categorías. Por el momento este listado se encuentra en un array, y por medio de una promesa con un delay de 2 segundos se simula un llamado a una API.
-</p>
-<p>
+    En la página principal se pueden ver un listado de productos de varias categorías. Por el momento este listado se encuentra en un array, y por medio de una promesa con un delay de 2 segundos se simula un llamado a una API.<br>
+    
     En la parte superior tenemos la barra de navegación (NavBar) donde se encuentran las categorías que se definen de forma dinámica dependiendo del listado de productos.
 
     Al hacer click en alguna de estas categorías se muestra una lista filtrada de los productos que corresponden a ella. Para esto se utilizó NavLinks para el Routing.
