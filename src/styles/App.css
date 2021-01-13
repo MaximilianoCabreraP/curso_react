@@ -25,3 +25,6 @@ nav{
   .menu .navbar-text {
     margin-right: 10px;
   }
+  .upper-case{
+    text-transform: capitalize;
+}

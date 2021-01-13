@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ItemList from './ItemList'
 import { useParams } from 'react-router-dom'
 
 const ItemListContainer = ({ greeting, productos }) => {
+    const [ items, setItems ] = useState([])
     const { nombreCategoria } = useParams()
-    
-    const listadoProductos = nombreCategoria?
-                                productos.filter((item) => item.nombreCategoria === nombreCategoria) :
-                                productos.sort(() => Math.random() - 0.5)
+
+    useEffect(() => {
+        const listProducts = new Promise((resolver, rechazar) => {
+            resolver(productos)
+            rechazar("No se pudieron cargar los productos")
+        })
+
+        listProducts.then(resultado=>{
+            nombreCategoria?
+                        setItems(resultado.filter((item) => item.nombreCategoria === nombreCategoria)) :
+                        setItems(resultado.sort(() => Math.random() - 0.5))
+        }).catch((resultado) => {
+            console.log({ resultado })
+        });
+    }, [productos, nombreCategoria]);
     
     return (
         <>
@@ -16,9 +28,9 @@ const ItemListContainer = ({ greeting, productos }) => {
                 <h1 className="title-category">{nombreCategoria}</h1>
                 <div className="row product-grid">
                     {
-                        listadoProductos.length?
+                        items.length?
                         (
-                            listadoProductos.map((item) =>(
+                            items.map((item) =>(
                                 <ItemList key={item.id} item={item} />
                             ))
                         ):(

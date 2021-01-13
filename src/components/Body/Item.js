@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "../../styles/Product.css"
 
-const Item = ({ id, title, price, link, photo, stock }) => {
+const Item = ({ id, title, price, photo, stock }) => {
   	return (
 		<div className="item-list col-sm-3">
-			<Link to={link}>
+			<Link to={`/item/${id}`}>
 				<div className="img-list-container">
 					<img src={photo} alt={title} />
 				</div>
