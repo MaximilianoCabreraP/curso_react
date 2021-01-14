@@ -27,7 +27,13 @@ const ItemDetailContainer = ({productos}) => {
             return (
                 <div className="container">
                     {
-                        <ItemDetail item={ item[0] } />
+                        <ItemDetail key={item[0].id}
+                                    id={item[0].id}
+                                    title={item[0].title}
+                                    price={item[0].price}
+                                    photo={item[0].photo}
+                                    stock={item[0].stock}
+                                    nombreCategoria={item[0].nombreCategoria} />
                     }
                 </div>
             )

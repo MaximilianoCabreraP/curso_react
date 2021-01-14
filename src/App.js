@@ -4,6 +4,7 @@ import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import ItemDetailContainer from './components/Body/ItemDetailContainer';
 import ItemListContainer from './components/Body/ItemListContainer';
+import Cart from './components/Body/Cart';
 import NotFound from './components/Body/NotFound';
 import productos from  './Assets/Products.js'
 import  './styles/App.css';
@@ -37,6 +38,9 @@ const App = () => {
                         </Route>
                         <Route path="/item/:id" exact>
                             <ItemDetailContainer productos={productos} />
+                        </Route>
+                        <Route path="/cart" exact>
+                            <Cart />
                         </Route>
                         <Route path="*">
                             <NotFound />
