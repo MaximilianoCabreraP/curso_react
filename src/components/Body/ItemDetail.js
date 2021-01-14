@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ItemCount from './ItemCount'
 import { Link } from 'react-router-dom'
 
@@ -6,26 +6,18 @@ import "../../styles/Product.css"
 
 const ItemDetail = ({ id, title, price, photo, stock, nombreCategoria }) => {
 	const [ cart, setCart ] = useState([])
-	const addToCart = (obj) => {
-		const existe = cart.find(product => product.id === obj.id)
-		if(existe){
-			setCart(cart)
-		}else{
-			setCart([
-				...cart,
-				{
-					id: obj.id,
-					cantidad: obj.cantidad,
-					precio: obj.precio
-				}
-			])
-		}
-	}
 	const [ inCart, setInCart ] = useState(false)
-	useEffect(() => {
-		setInCart(cart.find(product => product.id === id))
-	}, [cart, id])
-
+	const addToCart = (obj) => {
+		setCart([
+			...cart,
+			{
+				id: obj.id,
+				cantidad: obj.cantidad,
+				precio: obj.precio
+			}
+		])
+		setInCart(true)
+	}
     return (
 		<div className="row no-gutters detail-content">
 			<div className="col-sm-1">&nbsp;</div>
