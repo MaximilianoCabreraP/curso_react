@@ -1,14 +1,25 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import '../../styles/Product.css'
 
-const ItemCount = ({ id, stock, initial = 1, addToCart, price, inCart}) => {
+const ItemCount = ({ item, initial = 1, addToCart, inCart}) => {
+	const { stock } = item
 	const [contador, setContador] = useState(initial);
 
-	initial = stock === 0?"Sin Stock": initial
-	
-  	const restarCantidad = () => { setContador(contador - 1) }
-	const sumarCantidad = () => { setContador(contador + 1) }
+  	const restarCantidad = () => {
+		contador > initial ? 
+					setContador(contador - 1)
+      				: console.log("Stock Mínimo");
+  	}
+
+	const sumarCantidad = () => {
+		contador < stock ? 
+					setContador(contador + 1) 
+					: console.log("Stock Máximo");
+  	};
+
+  	const agregarCarrito = (id, contador) => {
+    	console.log(`Agregar a Carrito Producto con ID: ${id} - Cantidad: ${contador} - Restantes: ${stock - contador}`)
+  	}
 
 	return (
 		<div className="item-count">
@@ -19,7 +30,7 @@ const ItemCount = ({ id, stock, initial = 1, addToCart, price, inCart}) => {
 				(
 					<button
 						className="btn btn-outline-primary btn-sm"
-						onClick={() => { addToCart({id:id, cantidad: contador, precio:price}); }} >
+						onClick={() => { addToCart({item:item, cantidad: contador}); }} >
 						Agregar a Carrito
 					</button>
 				):(
@@ -28,7 +39,6 @@ const ItemCount = ({ id, stock, initial = 1, addToCart, price, inCart}) => {
 			}
 		</div>
 	)
-	
 }
 
 export default ItemCount;

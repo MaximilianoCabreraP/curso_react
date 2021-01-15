@@ -1,23 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import ItemCount from './ItemCount'
+import CartContext from '../../context/CartContext'
 import { Link } from 'react-router-dom'
 
 import "../../styles/Product.css"
 
-const ItemDetail = ({ id, title, price, photo, stock, nombreCategoria }) => {
-	const [ cart, setCart ] = useState([])
-	const [ inCart, setInCart ] = useState(false)
-	const addToCart = (obj) => {
-		setCart([
-			...cart,
-			{
-				id: obj.id,
-				cantidad: obj.cantidad,
-				precio: obj.precio
-			}
-		])
-		setInCart(true)
-	}
+const ItemDetail = ({ item }) => {
+	const { id, photo, title, price, stock, nombreCategoria } = item
+	const { addToCart, inCart } = useContext(CartContext);
+	
     return (
 		<div className="row no-gutters detail-content">
 			<div className="col-sm-1">&nbsp;</div>
@@ -30,7 +21,7 @@ const ItemDetail = ({ id, title, price, photo, stock, nombreCategoria }) => {
 				<h1>{title} - {id}</h1>
 				<span className="price-item align-self-center">${price}</span>{" "}
 				<div className="text-center stock">({stock} disponibles)</div>
-				<ItemCount addToCart={addToCart} inCart={inCart} id={id} stock={stock} price={price} />
+				<ItemCount addToCart={addToCart} inCart={inCart} item={item} id={id} stock={stock} price={price} />
 				<Link to={`/categorias/${nombreCategoria}`}>Volver a {nombreCategoria}</Link>
 			</div>
 		</div>
