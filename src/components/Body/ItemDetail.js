@@ -7,7 +7,8 @@ import "../../styles/Product.css"
 
 const ItemDetail = ({ item }) => {
 	const { id, photo, title, price, stock, nombreCategoria } = item
-	const { addToCart, inCart } = useContext(CartContext);
+	const { addToCart, isInCart } = useContext(CartContext);
+	const existe = isInCart(item.id)
 	
     return (
 		<div className="row no-gutters detail-content">
@@ -21,7 +22,15 @@ const ItemDetail = ({ item }) => {
 				<h1>{title} - {id}</h1>
 				<span className="price-item align-self-center">${price}</span>{" "}
 				<div className="text-center stock">({stock} disponibles)</div>
-				<ItemCount addToCart={addToCart} inCart={inCart} item={item} id={id} stock={stock} price={price} />
+				<div className="item-count">
+					{
+						!existe? (
+							<ItemCount item={item} addToCart={addToCart} />
+						):(
+							<Link to="/cart" className="btn btn-outline-primary btn-sm">Terminar Compra</Link>
+						)
+					}
+				</div>
 				<Link to={`/categorias/${nombreCategoria}`}>Volver a {nombreCategoria}</Link>
 			</div>
 		</div>

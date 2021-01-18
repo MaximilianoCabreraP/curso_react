@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import cart from "../../images/cart.svg"
+import CartContext from '../../context/CartContext'
 import { Link } from "react-router-dom"
 const CartWidget = () => {
+
+    const { cantItems } = useContext(CartContext);
+
     return (
         <>
-            <Link to="#carrito" className="cart-icon" disabled>
+            <Link to="/cart" className="cart-icon" disabled>
                 <img src={cart} alt="Cart" />
-                <span className="badge badge-secondary quantity">0</span>
+                <span className="badge badge-secondary quantity">{cantItems}</span>
             </Link>
         </>
     )
