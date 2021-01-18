@@ -1,39 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ItemDetail from './ItemDetail'
 import { useParams } from 'react-router-dom'
 import NotFound from './NotFound';
 import Loader from './Loader';
 
 const ItemDetailContainer = ({productos}) => {
-    const [item, setItem] = useState([]);
     const { id } = useParams()
 
-    useEffect(() => {
-        const listProducts = new Promise((resolver, rechazar) => {
-            resolver(productos)
-            rechazar("No se pudieron cargar los productos")
-        })
+    const productoFiltrado = productos.filter(i => i.id === parseInt(id))
+    const item = productoFiltrado.length === 0? "no existe" : productoFiltrado;
 
-        listProducts.then(resultado=>{
-            let itemFiltrado = resultado.filter(i => i.id === parseInt(id))
-            itemFiltrado.length === 0? setItem("no existe") : setItem(itemFiltrado)
-        }).catch((resultado) => {
-            console.log({ resultado })
-        });
-    }, [id, productos]);
-
-    if(item.length){
+    if(item.length > 0){
         if(item !== "no existe"){
             return (
                 <div className="container">
                     {
-                        <ItemDetail key={item[0].id}
-                                    id={item[0].id}
-                                    title={item[0].title}
-                                    price={item[0].price}
-                                    photo={item[0].photo}
-                                    stock={item[0].stock}
-                                    nombreCategoria={item[0].nombreCategoria} />
+                        <ItemDetail key={item[0].id} item={item[0]} />
                     }
                 </div>
             )

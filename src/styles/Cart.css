@@ -13,6 +13,15 @@
   right: -10px;
 }
 
-.nav-link.active{
-  color: red;
+.img-cart {
+  max-width: 100%;
+}
+
+.precio-cart{
+  font-size:20px;
+}
+
+.bloque-blanco-cart{
+  padding: 1% 0% 1% 0%;
+  margin-bottom:20px;
 }
