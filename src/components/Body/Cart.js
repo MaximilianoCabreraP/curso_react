@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import ItemCarrito from './ItemCarrito'
 import TotalCarrito from './TotalCarrito'
 import CartContext from '../../context/CartContext'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
     const { cart } = useContext(CartContext);
@@ -15,15 +16,17 @@ const Cart = () => {
                         <>
                             {
                                 cart.map((carrito => [
-                                    <ItemCarrito item={carrito.item} cantidad={carrito.cantidad} />
+                                    <ItemCarrito key={carrito.item.id} item={carrito.item} cantidad={carrito.cantidad} />
                                 ]))
                             }
                             <div className="separador"></div>
                             <TotalCarrito />
                         </>
                     )
-                :
-                    "No hay items"}
+                :   (
+                    <Link to="/" className="btn btn-primary">Agregar productos</Link>
+                    )
+                }
             </div>
         </>
     )
