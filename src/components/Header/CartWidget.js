@@ -6,14 +6,18 @@ const CartWidget = () => {
 
     const { cantItems } = useContext(CartContext);
 
-    return (
-        <>
-            <Link to="/cart" className="cart-icon" disabled>
-                <img src={cart} alt="Cart" />
-                <span className="badge badge-secondary quantity">{cantItems}</span>
-            </Link>
-        </>
-    )
+    if(cantItems){
+        return (
+            <>
+                <Link to="/cart" className="cart-icon" disabled>
+                    <img src={cart} alt="Cart" />
+                    <span className="badge badge-secondary quantity">{cantItems}</span>
+                </Link>
+            </>
+        )
+    }else{
+        return null
+    }
 }
 
 export default CartWidget

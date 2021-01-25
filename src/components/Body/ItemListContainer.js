@@ -1,25 +1,30 @@
-import React, { useState, useEffect } from 'react'
-import ItemList from './ItemList'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import ItemList from './ItemList';
+import { useParams } from 'react-router-dom';
 
-const ItemListContainer = ({ greeting, productos }) => {
-    const [ items, setItems ] = useState([])
-    const { nombreCategoria } = useParams()
+import { firestore } from "../../firebaseConfig";
 
+import prods from '../../Assets/Products';
+
+const ItemListContainer = ({ greeting }) => {
+    const [ items, setItems ] = useState([]);
+    const { nombreCategoria } = useParams();
+    
     useEffect(() => {
-        const listProducts = new Promise((resolver, rechazar) => {
-            resolver(productos)
-            rechazar("No se pudieron cargar los productos")
-        })
+        let query;
+        nombreCategoria?
+            query = firestore.collection("productos").where("nombreCategoria","==", nombreCategoria).get() :
+            query = firestore.collection("productos").get()
 
-        listProducts.then(resultado=>{
+        query.then(({docs}) =>{
+            setItems(docs.map( doc => ({id: doc.id, ...doc.data()})))
+        }).catch((err)=>{
             nombreCategoria?
-                        setItems(resultado.filter((item) => item.nombreCategoria === nombreCategoria)) :
-                        setItems(resultado.sort(() => Math.random() - 0.5))
-        }).catch((resultado) => {
-            console.log({ resultado })
+                setItems(prods.filter((item) => item.nombreCategoria === nombreCategoria)) :
+                setItems(prods);
+            console.log(`No se pudieron cargar los productos. Error: ${err}`);
         });
-    }, [productos, nombreCategoria]);
+    }, [nombreCategoria])
     
     return (
         <>
@@ -47,4 +52,4 @@ const ItemListContainer = ({ greeting, productos }) => {
     )
 }
 
-export default ItemListContainer
+export default ItemListContainer;

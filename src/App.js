@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Header from "./components/Header/Header"
@@ -10,24 +10,9 @@ import NotFound from './components/Body/NotFound';
 
 import { CartState } from './context/CartState'
 
-import productos from  './Assets/Products.js'
 import  './styles/App.css';
 
 const App = () => {
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        const listProducts = new Promise((resolver, rechazar) => {
-            setTimeout(() => {
-                resolver(productos)
-                rechazar("No se pudieron cargar los productos")
-            }, 2000)
-        })
-        listProducts.then((resultado)=>{
-            setItems(resultado)
-        }).catch((resultado) =>{
-            console.log({ resultado });
-        })
-    }, [])
     return(
         <>
             <BrowserRouter>
@@ -36,13 +21,13 @@ const App = () => {
                     <div className="main">
                         <Switch>
                             <Route path="/" exact>
-                                <ItemListContainer greeting="Listado de Productos" productos={items} />
+                                <ItemListContainer greeting="Listado de Productos" />
                             </Route>
                             <Route path="/categorias/:nombreCategoria" exact>
-                                <ItemListContainer productos={items} />
+                                <ItemListContainer />
                             </Route>
                             <Route path="/item/:id" exact>
-                                <ItemDetailContainer productos={productos} />
+                                <ItemDetailContainer />
                             </Route>
                             <Route path="/cart" exact>
                                 <Cart />

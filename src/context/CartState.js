@@ -43,7 +43,8 @@ export const CartState = ({ children }) => {
         totales.map( t => total += t)
         setTotal(total)
 
-        setCantItems(cart.length)
+        setCantItems(cart.reduce((accumulator, currentValue) => accumulator + currentValue.cantidad, 0));
+        //setCantItems(cart.length)
     }, [cart])
 
     return (
