@@ -5,6 +5,14 @@ export const CartState = ({ children }) => {
     const [cart, setCart] = useState([])
     const [cantItems, setCantItems] = useState(0)
     const [total, setTotal] = useState(0)
+    const [idOrden, setIdOrden] = useState([])
+    const [carritoEstado, setCarritoEstado] = useState(true);
+    const [venta, setVenta] = useState({
+        nroPedido: "",
+        productos: [],
+        fecha: "",
+        total: ""
+    });
 
     const addToCart = ({item, cantidad}) => {
 		setCart([
@@ -38,17 +46,12 @@ export const CartState = ({ children }) => {
     }
     
     useEffect(() => {
-        let total = 0
-        const totales = cart.map( producto => producto.item.price * producto.cantidad )
-        totales.map( t => total += t)
-        setTotal(total)
-
+        setTotal(cart.reduce((accumulator, currentValue) => accumulator + (currentValue.item.price * currentValue.cantidad), 0));
         setCantItems(cart.reduce((accumulator, currentValue) => accumulator + currentValue.cantidad, 0));
-        //setCantItems(cart.length)
     }, [cart])
 
     return (
-        <CartContext.Provider value={{addToCart, isInCart, removeItem, clearCart, actualizarCantidad, cantItems, cart, total}}>
+        <CartContext.Provider value={{addToCart, isInCart, idOrden, setIdOrden, carritoEstado, setCarritoEstado, removeItem, clearCart, actualizarCantidad, cantItems, cart, total, venta, setVenta}}>
             {children}
         </CartContext.Provider>
     )

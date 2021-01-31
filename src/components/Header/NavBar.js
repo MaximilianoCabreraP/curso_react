@@ -27,6 +27,28 @@ const NavBar = () => {
                     ))
                 }
                 </ul>
+                <ul className="menu row">
+                    <li>
+                        <NavLink to="/mis-pedidos" className="nav-link left-nav-bar">
+                            Mis Pedidos
+                        </NavLink>
+                    </li>
+                    {/* <li>
+                        <NavLink to="/wishlist" className="nav-link left-nav-bar">
+                            WishList
+                        </NavLink>
+                    </li> 
+                    <li>
+                        <NavLink to="/login" className="nav-link left-nav-bar">
+                            LogIn
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/logout" className="nav-link left-nav-bar">
+                            LogOut
+                        </NavLink>
+                    </li> */}
+                </ul>
                 <div className="navbar-text">
                     <CartWidget />
                 </div>

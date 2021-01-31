@@ -3,6 +3,7 @@ import Item from "./Item"
 import "../../styles/Product.css"
 
 const ItemList = ({ item }) => {
+    
     return (
             <Item
                 key={item.id}

@@ -2,13 +2,13 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 
 const miConfiguracion = {
-    apiKey: "AIzaSyAVLD0XjY1GzH3XcWs3p7QGUyjVzDP5Yd0",
-    authDomain: "curso-react-coderhouse.firebaseapp.com",
-    databaseURL: "https://curso-react-coderhouse-default-rtdb.firebaseio.com",
-    projectId: "curso-react-coderhouse",
-    storageBucket: "curso-react-coderhouse.appspot.com",
-    messagingSenderId: "138950654996",
-    appId: "1:138950654996:web:4350394869293039563b01"
+    apiKey: process.env.REACT_APP_APIKEY,
+    authDomain: process.env.REACT_APP_authDomain,
+    databaseURL: process.env.REACT_APP_databaseURL,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId
 }
 
 const app = firebase.initializeApp(miConfiguracion)

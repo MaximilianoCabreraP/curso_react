@@ -9,19 +9,8 @@
 }
 .cart-icon .quantity{
   position: absolute;
-  top: -5px;
+  top: -12px;
   right: -10px;
-}
-
-.img-cart {
-  max-width: 100%;
-}
-
-.precio-cart{
-  font-size:20px;
-}
-
-.bloque-blanco-cart{
-  padding: 1% 0% 1% 0%;
-  margin-bottom:20px;
+  font-size: 15px;
+  border-radius: 4em;
 }

@@ -9,7 +9,7 @@ import prods from '../../Assets/Products';
 const ItemListContainer = ({ greeting }) => {
     const [ items, setItems ] = useState([]);
     const { nombreCategoria } = useParams();
-    
+
     useEffect(() => {
         let query;
         nombreCategoria?
@@ -26,11 +26,11 @@ const ItemListContainer = ({ greeting }) => {
         });
     }, [nombreCategoria])
     
+    const titulo = nombreCategoria?nombreCategoria:greeting;
     return (
         <>
-            <h4> { greeting } </h4>
             <div className="container">
-                <h1 className="title-category">{nombreCategoria}</h1>
+                <h1 className="title-category">{titulo}</h1>
                 <div className="row product-grid">
                     {
                         items.length?

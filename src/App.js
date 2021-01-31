@@ -10,7 +10,12 @@ import NotFound from './components/Body/NotFound';
 
 import { CartState } from './context/CartState'
 
-import  './styles/App.css';
+import ResumenCompra from './components/Body/ResumenCompra';
+import MisPedidos from './components/Body/MisPedidos';
+import Wishlist from './components/Body/Wishlist';
+
+import 'bootswatch/dist/lux/bootstrap.min.css';
+import './styles/App.css';
 
 const App = () => {
     return(
@@ -31,6 +36,15 @@ const App = () => {
                             </Route>
                             <Route path="/cart" exact>
                                 <Cart />
+                            </Route>
+                            <Route path="/resumen" exact>
+                                <ResumenCompra />
+                            </Route>
+                            <Route path="/mis-pedidos" exact>
+                                <MisPedidos />
+                            </Route>
+                            <Route path="/wishlist" exact>
+                                <Wishlist />
                             </Route>
                             <Route path="*">
                                 <NotFound />

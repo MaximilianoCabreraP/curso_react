@@ -9,7 +9,7 @@ const ItemCount = ({ item, initial = 1, addToCart, existe}) => {
 	return (
 		<>
 			<button onClick={() => { restarCantidad(); }} className={`btn-count col-3`} disabled={contador <= initial}>-</button>
-			<span className="input-count col-6"> {contador === 0 ? initial : contador} </span>
+			<span className="col-6"> {contador === 0 ? initial : contador} </span>
 			<button onClick={() => { sumarCantidad(); }} className={"btn-count col-3"} disabled={ contador >= item.stock } > + </button>
 			<button
 				className="btn btn-outline-primary btn-sm"

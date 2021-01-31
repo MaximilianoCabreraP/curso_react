@@ -23,12 +23,16 @@ const ItemDetail = ({ item }) => {
 				<span className="price-item align-self-center">${price}</span>{" "}
 				<div className="text-center stock">({stock} disponibles)</div>
 				<div className="item-count">
-					{
-						!existe? (
-							<ItemCount item={item} addToCart={addToCart} />
-						):(
-							<Link to="/cart" className="btn btn-outline-primary btn-sm">Terminar Compra</Link>
+					{stock>0?
+						(
+							!existe? (
+								<ItemCount item={item} addToCart={addToCart} />
+							):(
+								<Link to="/cart" className="btn btn-outline-primary btn-sm">Terminar Compra</Link>
+							)
 						)
+						:
+						<button type="button" className="btn btn-primary disabled" disabled>Sin Stock</button>
 					}
 				</div>
 				<Link to={`/categorias/${nombreCategoria}`}>Volver a {nombreCategoria}</Link>

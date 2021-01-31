@@ -1,8 +1,4 @@
-nav{
-  text-align: center;
-}
 .logo{
-  margin-top: -5%;
   max-width: 90%;
 }
 .main{
@@ -15,16 +11,24 @@ nav{
   padding:0;
   margin:0;
 }
-  .menu li .nav-link {
+
+  .menu li .nav-link, .left-nav-bar{
     color: rgba(0, 0, 0, 0.5);
   }
-    .menu li .nav-link.active,
-    .menu li .nav-link:hover {
+    .menu li .nav-link.active, .left-nav-bar:active,
+    .menu li .nav-link:hover, .left-nav-bar:hover {
       color: rgba(0, 0, 0, 1);
     }
   .menu .navbar-text {
     margin-right: 10px;
   }
-  .upper-case{
-    text-transform: capitalize;
+
+
+.text-danger{
+  font-size: 12px;
+  margin-top: -4px;
 }
+
+
+tr:nth-child(even) {background: rgb(225, 228, 228);}
+tr:nth-child(odd) {background: #ffffff}
