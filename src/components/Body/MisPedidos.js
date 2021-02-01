@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 import '../../styles/App.css'
 const MisPedidos = () => {
-    const { idOrden } = useContext(CartContext);
+    const { idOrden, setIdOrden } = useContext(CartContext);
     
     const [listaOrden, setListaOrden] = useState([])
     const [ loading, setLoading ] = useState(true);
@@ -25,7 +25,6 @@ const MisPedidos = () => {
                 Promise.all(itemRefs)
                 .then(docs => {
                     let items = docs.map(doc => ({id: doc.id, ...doc.data()}));
-                    console.log("Items: ",items);
                     setListaOrden(items.reverse());
                 })
                 .catch(e => console.log(e))
@@ -40,6 +39,11 @@ const MisPedidos = () => {
         }
     },[idOrden])
 
+    const vaciarPedidos = () => {
+        setIdOrden([]);
+        setListaOrden([]);
+    }
+
     let curDate = new Date(null);
     
     if(loading){
@@ -53,28 +57,30 @@ const MisPedidos = () => {
                         <div className="container my-1 alert alert-dismissible alert-success">
                             La compra fue exitosa. Tu nro de pedido es: <h5>{idOrden}</h5>
                         </div> */}
+
+                        <button onClick={vaciarPedidos} type="button" className="btn btn-primary mb-2 vaciar-pedidos">Vaciar Pedidos</button> 
                         <table className="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">NroPedido</th>
-                                    <th scope="col">Producto</th>
-                                    <th scope="col">Cantidad</th>
                                     <th scope="col">Fecha</th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Precio Unitario</th>
                                     <th scope="col">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {listaOrden.map(({id, date, items, total}) => (
-                                    <tr>
-                                        <th scope="row">{id}</th>
-                                        <td>{items && items.map(({item}) => <p>{item.title}</p>)}</td>
-                                        <td>{items &&
-                                            items.map(({cantidad}) => <p>{cantidad}</p>)}</td>
-                                        <td>{
+                                {listaOrden.map(({id, date, items, total}, i) => (
+                                    <tr className={i===0?"table-success":""}>
+                                        <th scope="row"><p >{id}</p></th>
+                                        <td className="text-truncate">{
                                             curDate.setTime(date.seconds*1000),
                                             curDate.toLocaleString()
                                             }</td>
-                                        <td>{total}</td>
+                                        <td>{items && items.map(({cantidad, item}) => <p className="acomodo-linea text-truncate">{cantidad} x {item.title}</p>)}</td>
+                                        <td>{items &&
+                                            items.map(({item}) => <p className="acomodo-linea">${item.price}</p>)}</td>
+                                        <td>${total}</td>
                                     </tr>
                                 ))
                             }

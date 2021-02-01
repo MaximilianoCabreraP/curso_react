@@ -92,7 +92,6 @@ const ResumenCompra = () => {
         }
     }
     const validate = () => {
-        return true;
         let input = inputs;
         let errors = {};
         let isValid = true;
