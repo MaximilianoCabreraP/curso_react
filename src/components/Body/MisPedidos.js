@@ -73,10 +73,12 @@ const MisPedidos = () => {
                                 {listaOrden.map(({id, date, items, total}, i) => (
                                     <tr className={i===0?"table-success":""}>
                                         <th scope="row"><p >{id}</p></th>
-                                        <td className="text-truncate">{
-                                            curDate.setTime(date.seconds*1000),
-                                            curDate.toLocaleString()
-                                            }</td>
+                                        <td className="text-truncate">
+                                            {(
+                                                curDate.setTime(date.seconds*1000),
+                                                curDate.toLocaleString()
+                                            )}
+                                        </td>
                                         <td>{items && items.map(({cantidad, item}) => <p className="acomodo-linea text-truncate">{cantidad} x {item.title}</p>)}</td>
                                         <td>{items &&
                                             items.map(({item}) => <p className="acomodo-linea">${item.price}</p>)}</td>

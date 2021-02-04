@@ -14,3 +14,8 @@
   font-size: 15px;
   border-radius: 4em;
 }
+
+.f-right{
+  float: right;
+  margin-right: -70px;
+}

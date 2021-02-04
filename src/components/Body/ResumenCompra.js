@@ -17,7 +17,7 @@ const ResumenCompra = () => {
         confirmarEmail: ""
     });
     const [msjError, setError] = useState({});
-
+    
     const nombreRef = useRef(null);
     const apellidoRef = useRef(null);
     const telefonoRef = useRef(null);
@@ -104,12 +104,10 @@ const ResumenCompra = () => {
             isValid = false;
             errors["apellido"] = !input["apellido"]?"Por favor ingresá un apellido." : "El apellido debe contener al menos 3 caracteres.";
         }
-
         if (!input["telefono"]) {
             isValid = false;
             errors["telefono"] = "Por favor ingresá un nro de teléfono.";
         }
-  
         if (typeof input["telefono"] !== "undefined") {  
             var pattern = new RegExp(/^[0-9\b]+$/);
             if (!pattern.test(input["telefono"])) {
@@ -120,7 +118,6 @@ const ResumenCompra = () => {
                 errors["telefono"] = "Por favor ingresá un nro de teléfono válido (10 dígitos).";
             }
         }
-
         if (typeof input["email"] !== "undefined") {
             pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
             if (!pattern.test(input["email"])) {
@@ -128,7 +125,6 @@ const ResumenCompra = () => {
                 errors["email"] = "Por favor ingresá un mail válido.";
             }
         }
-
         if (typeof input["confirmarEmail"] !== "undefined") {
             pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
             if( !input["confirmarEmail"]) {
@@ -142,12 +138,10 @@ const ResumenCompra = () => {
                 errors["confirmarEmail"] = "Por favor ingresá un mail válido.";
             }
         }
-
         setError(errors);
-
         return isValid;
     }
-
+    
     const handleBlur = e => {
         switch (e.target.name) {
             case "nombre": setBlur(inputs.nombre,nombreRef);break;
@@ -193,7 +187,11 @@ const ResumenCompra = () => {
                             <div className="text-danger">{msjError.confirmarEmail}</div>
                         <hr/>
                         <div>
-                            <button onClick={handleSubmit} className="btn btn-primary btn-sm">Checkout</button>
+                            <button onClick={handleSubmit} className="btn btn-primary btn-sm " disabled={inputs.confirmarEmail !== inputs.email ||
+                                                                                                            inputs.nombre === "" ||
+                                                                                                             inputs.apellido === "" ||
+                                                                                                              inputs.telefono === "" ||
+                                                                                                               inputs.email === ""}>Checkout</button>
                             <div className="separador"></div>
                             <button onClick={() => clearCart()} className="btn btn-outlineprimary btn-sm btn-danger"> Vaciar Carrito</button>
                         </div>

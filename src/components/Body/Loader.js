@@ -3,14 +3,15 @@ import "../../styles/Loader.css"
 
 const Loader = () => {
     return (
-        <div className="sk-chase">
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-        </div>
+        <>
+            <div className="separador"></div>
+            <div className="separador"></div>
+            <div className="separador"></div>
+            <div className="separador"></div>
+            <div className="progress container">
+                <div className="progress-value"></div>
+            </div>
+        </>
     )
 }
 
