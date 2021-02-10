@@ -1,21 +1,24 @@
 import React, { useState, useContext, useRef } from 'react';
 
 import CartContext from '../../context/CartContext';
+import UserContext from '../../context/UserContext';
 import { firestore } from "../../firebaseConfig";
 import firebase from 'firebase';
 import { useHistory } from 'react-router-dom';
 
 const ResumenCompra = () => {
     const { cart, total, idOrden, setIdOrden, setCarritoEstado, clearCart, cantItems } = useContext(CartContext);
+    const { usuario, handleUserData, updateUser }= useContext(UserContext);
     const history = useHistory();
     
     const [inputs, setInputs] = useState({
-        nombre: "",
-        apellido: "",
-        telefono: "",
-        email: "",
+        nombre: usuario.nombre,
+        apellido: usuario.apellido,
+        telefono: usuario.telefono,
+        email: usuario.email,
         confirmarEmail: ""
     });
+
     const [msjError, setError] = useState({});
     
     const nombreRef = useRef(null);
@@ -32,6 +35,7 @@ const ResumenCompra = () => {
     }
     const handleSubmit = e => {
         e.preventDefault();
+        
         if(validate()){
             const batch = firestore.batch();
             const collection_orders = firestore.collection("orders");
@@ -82,7 +86,9 @@ const ResumenCompra = () => {
                         console.log("Error al commitear el batch. ", err);
                         //TODO: Enviar mensaje al usuario para que entienda lo que está pasando
                     }).finally(() => {
-                        //TODO: Poner spiner de procesando pago.
+                        if(handleUserData(inputs)){
+                            updateUser();
+                        }
                         history.push("/mis-pedidos")
                     });
                 }else{

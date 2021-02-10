@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import CartContext from './CartContext'
 
+import { firestore } from "../firebaseConfig";
+
 export const CartState = ({ children }) => {
-    const [cart, setCart] = useState([])
-    const [cantItems, setCantItems] = useState(0)
-    const [total, setTotal] = useState(0)
-    const [idOrden, setIdOrden] = useState([])
+    const [cart, setCart] = useState([]);
+    const [pedidos, setPedidos]= useState([]);
+    const [cantItems, setCantItems] = useState(0);
+    const [total, setTotal] = useState(0);
+    const [idOrden, setIdOrden] = useState([]);
     const [carritoEstado, setCarritoEstado] = useState(true);
     const [venta, setVenta] = useState({
         nroPedido: "",
@@ -13,6 +16,45 @@ export const CartState = ({ children }) => {
         fecha: "",
         total: ""
     });
+
+    useEffect(() => {
+        let carrito = JSON.parse(localStorage.getItem("carrito"));
+        setCart(carrito);
+        let pedidos = JSON.parse(localStorage.getItem("pedidos"));
+        setPedidos(pedidos);
+        let ordenes = JSON.parse(localStorage.getItem("ordenes"));
+        setIdOrden(ordenes);
+    },[]);
+
+    useEffect(() => {
+        setTotal(cart.reduce((accumulator, currentValue) => accumulator + (currentValue.item.price * currentValue.cantidad), 0));
+        setCantItems(cart.reduce((accumulator, currentValue) => accumulator + currentValue.cantidad, 0));
+        localStorage.setItem("carrito", JSON.stringify(cart));
+    }, [cart]);
+    useEffect(() => {
+        localStorage.setItem("pedidos", JSON.stringify(pedidos));
+    }, [pedidos])
+
+    useEffect(() => {
+        if(idOrden.length){
+            const db = firestore;
+            const getOrders = ( idOrden ) => {
+                let orders = idOrden.map( (id) => {
+                    return db.collection("orders").doc(id).get();
+                })
+
+                Promise.all(orders)
+                .then(docs => {
+                    let listadoPedidos = docs.map(doc => ({id: doc.id, ...doc.data()}));
+                    setPedidos(listadoPedidos.reverse());
+                })
+                .catch(e => console.log(e))
+            }
+            getOrders( idOrden );
+        }
+        localStorage.setItem("ordenes", JSON.stringify(idOrden));
+    }, [idOrden]);
+    
 
     const addToCart = ({item, cantidad}) => {
 		setCart([
@@ -44,14 +86,12 @@ export const CartState = ({ children }) => {
         })
         setCart( newCart )
     }
-    
-    useEffect(() => {
-        setTotal(cart.reduce((accumulator, currentValue) => accumulator + (currentValue.item.price * currentValue.cantidad), 0));
-        setCantItems(cart.reduce((accumulator, currentValue) => accumulator + currentValue.cantidad, 0));
-    }, [cart])
 
     return (
-        <CartContext.Provider value={{addToCart, isInCart, idOrden, setIdOrden, carritoEstado, setCarritoEstado, removeItem, clearCart, actualizarCantidad, cantItems, cart, total, venta, setVenta}}>
+        <CartContext.Provider value={{
+            idOrden,  carritoEstado,  cantItems, cart, total, venta, pedidos, 
+            addToCart, isInCart, setIdOrden, setCarritoEstado, removeItem, clearCart, actualizarCantidad, setVenta, setPedidos
+        }}>
             {children}
         </CartContext.Provider>
     )

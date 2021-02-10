@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from './Logo'
 import NavBar from './NavBar'
 
-const Header = () => {
+const Header = ( {categorias} ) => {
     return (
         <>
             <header className="container">
@@ -11,7 +11,7 @@ const Header = () => {
                         <Logo />
                     </div>
                     <div className="col-10">
-                        <NavBar />
+                        <NavBar categorias={categorias}/>
                     </div>
                 </div>
             </header>

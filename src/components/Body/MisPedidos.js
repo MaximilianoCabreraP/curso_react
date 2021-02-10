@@ -1,47 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react'
 import CartContext from '../../context/CartContext'
 
-import { firestore } from "../../firebaseConfig";
+
 
 import { Link } from 'react-router-dom'
 
 import '../../styles/App.css'
 const MisPedidos = () => {
-    const { idOrden, setIdOrden } = useContext(CartContext);
+    const { setIdOrden, pedidos, setPedidos } = useContext(CartContext);
     
-    const [listaOrden, setListaOrden] = useState([])
+    //const [listaOrden, setListaOrden] = useState([])
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() =>{
-        let cargando = true;
-        const db = firestore;
-
-        if(cargando){
-            const getOrders = (idOrden, setListaOrden) => {
-                let itemRefs = idOrden.map( (id) => {
-                    return db.collection("orders").doc(id).get();
-                })
-
-                Promise.all(itemRefs)
-                .then(docs => {
-                    let items = docs.map(doc => ({id: doc.id, ...doc.data()}));
-                    setListaOrden(items.reverse());
-                })
-                .catch(e => console.log(e))
-                .finally(() => {
-                    setLoading(false);
-                })
-            }
-            getOrders( idOrden, setListaOrden );
-            return () => {
-                cargando = false;
-            }
+        if(pedidos !== null){
+            setTimeout(() => {
+                setLoading(false);
+            }, 600);
+        }else{
+            console.log("Pedidos === null");
         }
-    },[idOrden])
+    })
 
     const vaciarPedidos = () => {
+        setPedidos([]);
         setIdOrden([]);
-        setListaOrden([]);
     }
 
     let curDate = new Date(null);
@@ -51,13 +34,9 @@ const MisPedidos = () => {
     }else{
         return (
             <div>
-                {listaOrden.length ?
+                {pedidos.length ?
                     <div className="container">
-                        {/* <h2>Lista de pedidos</h2>
-                        <div className="container my-1 alert alert-dismissible alert-success">
-                            La compra fue exitosa. Tu nro de pedido es: <h5>{idOrden}</h5>
-                        </div> */}
-
+                        <h2>Lista de pedidos</h2>
                         <button onClick={vaciarPedidos} type="button" className="btn btn-primary mb-2 vaciar-pedidos">Vaciar Pedidos</button> 
                         <table className="table table-hover">
                             <thead>
@@ -70,19 +49,18 @@ const MisPedidos = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {listaOrden.map(({id, date, items, total}, i) => (
-                                    <tr className={i===0?"table-success":""}>
-                                        <th scope="row"><p >{id}</p></th>
-                                        <td className="text-truncate">
+                                {pedidos.map(({id, date, items, total}, i) => (
+                                    <tr className={i===0?"table-success":""} key={i} >
+                                        <th scope="row" key={id}><p >{id}</p></th>
+                                        <td className="text-truncate"key={date}>
                                             {(
                                                 curDate.setTime(date.seconds*1000),
                                                 curDate.toLocaleString()
                                             )}
                                         </td>
-                                        <td>{items && items.map(({cantidad, item}) => <p className="acomodo-linea text-truncate">{cantidad} x {item.title}</p>)}</td>
-                                        <td>{items &&
-                                            items.map(({item}) => <p className="acomodo-linea">${item.price}</p>)}</td>
-                                        <td>${total}</td>
+                                        <td>{items && items.map(({cantidad, item}) => <p className="acomodo-linea text-truncate" key={cantidad}>{cantidad} x {item.title}</p>)}</td>
+                                        <td>{items && items.map(({item}) => <p className="acomodo-linea" key={item.price}>${item.price}</p>)}</td>
+                                        <td key={total}>${total}</td>
                                     </tr>
                                 ))
                             }

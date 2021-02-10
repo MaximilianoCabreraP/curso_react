@@ -3,14 +3,13 @@ import Item from "./Item"
 import "../../styles/Product.css"
 
 const ItemList = ({ item }) => {
-    
     return (
             <Item
                 key={item.id}
                 id={item.id}
                 title={item.title}
                 price={item.price}
-                photo={item.photo}
+                images={item.images}
                 stock={item.stock}
             />
     )

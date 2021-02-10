@@ -4,27 +4,36 @@ import { useParams } from 'react-router-dom';
 
 import { firestore } from "../../firebaseConfig";
 
-import prods from '../../Assets/Products';
-
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = ({ greeting, categorias } ) => {
     const [ items, setItems ] = useState([]);
     const { nombreCategoria } = useParams();
+    //const [ mensajeError, setMensajeError ] = useParams("");
 
-    useEffect(() => {
-        let query;
-        nombreCategoria?
-            query = firestore.collection("productos").where("nombreCategoria","==", nombreCategoria).get() :
-            query = firestore.collection("productos").get()
-
-        query.then(({docs}) =>{
-            setItems(docs.map( doc => ({id: doc.id, ...doc.data()})))
-        }).catch((err)=>{
-            nombreCategoria?
-                setItems(prods.filter((item) => item.nombreCategoria === nombreCategoria)) :
-                setItems(prods);
-            console.log(`No se pudieron cargar los productos. Error: ${err}`);
+    const realizarQuery = (query) =>{
+        query.then(({docs}) => {
+            setItems(docs.map( doc => ( {id: doc.id, ...doc.data()})))
+        })
+        .catch((err)=>{
+            console.log("Error: ", err);
+            //setMensajeError("No se pudieron encontrar productos. Error: ", err);
         });
-    }, [nombreCategoria])
+    }
+    useEffect(() => {
+        if(nombreCategoria === undefined){
+            realizarQuery(firestore.collection("productos").get())
+        }else{
+            let buscar = {};
+            categorias.forEach( value => {
+                if(value.slug === nombreCategoria){
+                    buscar = value;
+                    console.log("Buscar: ", buscar);
+                }
+            })
+            buscar !== null?
+                realizarQuery(firestore.collection("productos").where("idCategoria", "==", parseInt(buscar.id)).get())
+                : realizarQuery(firestore.collection("productos").get())
+        }
+    }, [nombreCategoria, categorias])
     
     const titulo = nombreCategoria?nombreCategoria:greeting;
     return (

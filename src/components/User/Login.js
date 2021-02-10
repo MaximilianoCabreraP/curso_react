@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef} from 'react'
+import React, { useState, useContext, useRef } from 'react'
 
 //Context
 import UserContext from '../../context/UserContext';
@@ -25,7 +25,6 @@ const Login = () => {
     const handleSubmit = e => {
         e.preventDefault();
         if(validate()){
-            console.log("OK")
             login(inputs.email, inputs.password);
         }
     }

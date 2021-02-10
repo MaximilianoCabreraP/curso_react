@@ -5,7 +5,7 @@ import NotFound from './NotFound';
 import Loader from './Loader';
 
 import { firestore } from "../../firebaseConfig"
-import prods from '../../Assets/Products'
+//import prods from '../../Assets/Products'
 
 
 const ItemDetailContainer = () => {
@@ -20,9 +20,11 @@ const ItemDetailContainer = () => {
             setProducto({id: resultado.id, ...resultado.data()})
         })
         .catch((e) => {
+            console.log(`No se pudieron cargar los productos. Error: ${e}`)
+            /*
             let prod = prods.filter((item) => (item.id === parseInt(id)))
             setProducto(...prod);
-            console.log(`No se pudieron cargar los productos. Error: ${e}`)
+            */
         }).finally(()=> {
             setLoading(false)
         })

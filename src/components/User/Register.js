@@ -116,40 +116,40 @@ const Register = () => {
                             <div className="col-sm-6">
                                 <div className="form-group text-left">
                                     Nombre
-                                    <input type="nombre" tabindex="1" className="form-control mb-2" onChange={handleChange} ref={nombreRef} id="nombre" name="nombre" placeholder="Nombre"/>
+                                    <input type="nombre" tabIndex="1" className="form-control mb-2" onChange={handleChange} ref={nombreRef} id="nombre" name="nombre" placeholder="Nombre"/>
                                     <div className="text-danger">{errorMessage.nombre}</div>
                                 </div>
                                 <div className="form-group text-left">
                                     Telefono
-                                    <input type="telefono" tabindex="3" className="form-control mb-2" onChange={handleChange} ref={telefonoRef} id="telefono" name="telefono" placeholder="Telefono"/>
+                                    <input type="telefono" tabIndex="3" className="form-control mb-2" onChange={handleChange} ref={telefonoRef} id="telefono" name="telefono" placeholder="Telefono"/>
                                     <div className="text-danger">{errorMessage.telefono}</div>
                                 </div>
                                 <div className="form-group text-left">
                                     Password
-                                    <input type="password" tabindex="5" className="form-control mb-2" onChange={handleChange} ref={passwordRef} id="password" name="password" placeholder="Password" />
+                                    <input type="password" tabIndex="5" className="form-control mb-2" onChange={handleChange} ref={passwordRef} id="password" name="password" placeholder="Password" />
                                     <div className="text-danger">{errorMessage.password}</div>
                                 </div>
                             </div>
                             <div className="col-sm-6">
                                 <div className="form-group text-left">
                                     Apellido
-                                    <input type="apellido" tabindex="2" className="form-control mb-2" onChange={handleChange} ref={apellidoRef} id="apellido" name="apellido" placeholder="Apellido"/>
+                                    <input type="apellido" tabIndex="2" className="form-control mb-2" onChange={handleChange} ref={apellidoRef} id="apellido" name="apellido" placeholder="Apellido"/>
                                     <div className="text-danger">{errorMessage.apellido}</div>
                                 </div>
                                 <div className="form-group text-left">
                                     Email
-                                    <input type="text" tabindex="4" className="form-control mb-2" onChange={handleChange} ref={emailRef} id="email" name="email"placeholder="Email"/>
+                                    <input type="text" tabIndex="4" className="form-control mb-2" onChange={handleChange} ref={emailRef} id="email" name="email"placeholder="Email"/>
                                     <div className="text-danger">{errorMessage.mail}</div>
                                 </div>
                                 <div className="form-group text-left">
                                     Confirm Password
-                                    <input type="password" tabindex="6" className="form-control mb-2" onChange={handleChange} ref={confirmPasswordRef} id="confirmPassword" name="confirmPassword" placeholder="Confirmar Password" />
+                                    <input type="password" tabIndex="6" className="form-control mb-2" onChange={handleChange} ref={confirmPasswordRef} id="confirmPassword" name="confirmPassword" placeholder="Confirmar Password" />
                                     <div className="text-danger">{errorMessage.confirmPassword}</div>
                                 </div>
                             </div>
                         </div><hr />
                         
-                        <button type="submit" tabindex="7" className="btn btn-primary btn-sm mb-2" disabled={inputs.password === "" || inputs.confirmPassword === ""}>
+                        <button type="submit" tabIndex="7" className="btn btn-primary btn-sm mb-2" disabled={inputs.password === "" || inputs.confirmPassword === ""}>
                             Register
                         </button>
                     </form>
