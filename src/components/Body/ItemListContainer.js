@@ -26,7 +26,6 @@ const ItemListContainer = ({ greeting, categorias } ) => {
             categorias.forEach( value => {
                 if(value.slug === nombreCategoria){
                     buscar = value;
-                    console.log("Buscar: ", buscar);
                 }
             })
             buscar !== null?

@@ -11,18 +11,10 @@
   padding:0;
   margin:0;
 }
-
-  .menu li .nav-link, .right-nav-bar{
-    color: rgba(0, 0, 0, 0.5);
-  }
-    .menu li .nav-link.active, .right-nav-bar:active,
-    .menu li .nav-link:hover, .right-nav-bar:hover {
+    .nav-link.active,
+    .nav-link:hover {
       color: rgba(0, 0, 0, 1);
     }
-  .menu .navbar-text {
-    margin-right: 10px;
-  }
-
 
 .text-danger{
   font-size: 12px;

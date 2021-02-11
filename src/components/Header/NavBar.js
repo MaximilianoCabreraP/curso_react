@@ -1,37 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import CartWidget from "./CartWidget";
 import "../../styles/Cart.css";
-//import productos from "../../Assets/Products.js";
 
+import Dropdown from 'react-bootstrap/dropdown'
 
 import UserContext from "../../context/UserContext";
 
 const NavBar = ( {categorias} ) => {
   const { usuario, logueado, logout } = useContext(UserContext);
-  const [showMenuLogueado, setShowMenuLogueado] = useState(false);
-  const [dropDownClass, setDropDownClass] = useState("dropdown-menu menu");
-
-  const handleDropdown = (e) => {
-    e.preventDefault();
-    if (e.target.name === "mostrarCategorias") {
-      let newDDClass = dropDownClass;
-      if(newDDClass.includes("show")){
-        newDDClass="dropdown-menu";
-      }else{
-        newDDClass += " show";
-      }
-      setDropDownClass(newDDClass);
-    } else if (e.target.name === "mostrarMenuLogueado") {
-      setShowMenuLogueado(!showMenuLogueado);
-    } else {
-      setDropDownClass("dropdown-menu menu")
-      setShowMenuLogueado(false);
-    }
-  };
-
+ 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light" onClick={handleDropdown}>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <button
         className="navbar-toggler"
         type="button"
@@ -43,84 +23,59 @@ const NavBar = ( {categorias} ) => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-
-      <div className="collapse navbar-collapse" id="navbarColor01">
-        <ul className="navbar-nav mr-auto" onClick={handleDropdown}>
-          <li className="nav-item dropdown">
-            <a
-              id="dropDownCategorias"
-              name="mostrarCategorias"
-              className="nav-link dropdown-toggle"
-              data-toggle="dropdown"
-              href="/"
-              role="button"
-            >
-              Categorías
-            </a>
-            <div className={dropDownClass}>
-              <ul className="menu">
-                {
+      <div className="navbar-collapse">
+        <div className="navbar-nav mr-auto">
+            <Dropdown>
+              <Dropdown.Toggle className="nav-link right-nav-bar" variant="">
+                Categorías
+              </Dropdown.Toggle>
+              <Dropdown.Menu>{
                   categorias.map((categoria) => (
-                    <NavLink to={`/categorias/${categoria.slug}`} className="nav-link dropDownCategory" key={categoria.nombre}>
-                      <li className="navbar-text text-dropdown ">
+                    <Dropdown.Item as="span" bsPrefix="none">
+                      <NavLink to={`/categorias/${categoria.slug}`} className="nav-link right-nav-bar" key={categoria.nombre}>
                         {categoria.nombre}
-                      </li>
-                    </NavLink>
+                      </NavLink>
+                  </Dropdown.Item>
                   ))
                 }
-              </ul>
-            </div>
-          </li>
-        </ul>
-        <ul className="menu row">
-            <li>
-                <NavLink to="/mis-pedidos" className="nav-link right-nav-bar">
-                    Mis Pedidos
-                </NavLink>
-            </li>
+              </Dropdown.Menu>
+            </Dropdown>
+        </div>
+        <div className="navbar-nav">
+          <NavLink to="/mis-pedidos" className="nav-link right-nav-bar">
+              Mis Pedidos
+          </NavLink>
             {logueado?
-                (
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" name="mostrarMenuLogueado" href="/" role="button">{usuario.apellido}, {usuario.nombre}</a>
-                        {!showMenuLogueado?
-                            (
-                                ""
-                            ): (
-                                <div className="dropdown-menu show">
-                                    <ul className="menu">
-                                        <li>
-                                            <NavLink to="/wishlist" className="nav-link right-nav-bar">
-                                                WishList
-                                            </NavLink>
-                                        </li>
-                                        <div className="dropdown-divider"></div>
-                                        <li>
-                                            <button onClick={logout}>Logout</button>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            )
-                        }
-
-                    </li>
-
-                ): (
-                    <>
-                        <li>
-                            <NavLink to="/register" className="nav-link right-nav-bar">
-                                Registrarse
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/login" className="nav-link right-nav-bar">
-                                LogIn
-                            </NavLink>
-                        </li>
-                    </>
-                )
+              (
+                <Dropdown>
+                  <Dropdown.Toggle as="a" href="#" className="nav-link right-nav-bar" variant="">
+                    {usuario.apellido}, {usuario.nombre}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item as="span" bsPrefix="none">
+                      <NavLink to="/wishlist" className="nav-link right-nav-bar">
+                        WishListss
+                      </NavLink>
+                    </Dropdown.Item>
+                    <Dropdown.Item as="span" bsPrefix="none"><NavLink to="/prueba" className="nav-link right-nav-bar">Prueba</NavLink></Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item as="a" href="/" onClick={logout}>Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              ): (
+                  <>
+                    <NavLink to="/register" className="nav-link right-nav-bar">
+                        Registrarse
+                    </NavLink>
+                    <NavLink to="/login" className="nav-link right-nav-bar">
+                        LogIn
+                    </NavLink>
+                  </>
+              )
             }
-        </ul>
+        </div>
+            
+        
         <div className="navbar-text">
             <CartWidget />
         </div>

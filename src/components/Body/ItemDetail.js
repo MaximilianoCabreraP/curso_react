@@ -15,7 +15,6 @@ const ItemDetail = ({ item }) => {
 
 	const addToWishlist = (e) => {
 		e.preventDefault();
-		console.log("Agregar producto: ", item.id);
 		setToWishList(item.id);
 	}
 	

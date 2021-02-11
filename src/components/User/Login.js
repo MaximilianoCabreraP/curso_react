@@ -82,7 +82,7 @@ const Login = () => {
                                 <div className="text-danger">{errorMessage.password}</div>
                             </div><hr />
                             <button type="submit" className="btn btn-primary btn-sm mb-2">
-                                Register
+                                Login
                             </button>
                             <div className="text-danger">{errorMessage.general}</div>
                         </form>
