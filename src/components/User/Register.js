@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
+import { NavLink } from 'react-router-dom';
 
 //Contexts
 import UserContext from '../../context/UserContext';
@@ -151,7 +152,8 @@ const Register = () => {
                         
                         <button type="submit" tabIndex="7" className="btn btn-primary btn-sm mb-2" disabled={inputs.password === "" || inputs.confirmPassword === ""}>
                             Register
-                        </button>
+                        </button><br />
+                        ¿Ya tenés cuenta? <NavLink to="/login" className="forgot-password text-right">Login</NavLink>
                     </form>
                 </div>
             </div>

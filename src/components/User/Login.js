@@ -1,4 +1,5 @@
 import React, { useState, useContext, useRef } from 'react'
+import { NavLink } from 'react-router-dom';
 
 //Context
 import UserContext from '../../context/UserContext';
@@ -85,6 +86,18 @@ const Login = () => {
                                 Login
                             </button>
                             <div className="text-danger">{errorMessage.general}</div>
+                            <div className="row">
+                                <div className="col-sm-5">
+                                    <p className="text-left ">
+                                        <NavLink to="/register"><small>Registrarme</small></NavLink>
+                                    </p>
+                                </div>
+                                <div className="col-sm-7">
+                                    <p className="forgot-password text-right">
+                                        <NavLink to="/forgotPassword"><small>Olvidé mi contraseña</small></NavLink>
+                                    </p>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
