@@ -1,6 +1,6 @@
 # Proyecto integrador Curso de React JS
 
-<h3>https://curso-react-coderhouse.web.app/</h3>
+<h3><a target="_blank">https://curso-react-coderhouse.web.app/</a></h3>
 
 El proyecto es un ecommerce que se encuentra finalizado.
 En la parte superior tenemos la barra de navegación (NavBar) donde se encuentran las categorías.
