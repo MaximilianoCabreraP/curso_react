@@ -27,16 +27,18 @@ export const CartState = ({ children }) => {
     },[]);
 
     useEffect(() => {
-        setTotal(cart.reduce((accumulator, currentValue) => accumulator + (currentValue.item.price * currentValue.cantidad), 0));
-        setCantItems(cart.reduce((accumulator, currentValue) => accumulator + currentValue.cantidad, 0));
-        localStorage.setItem("carrito", JSON.stringify(cart));
+        if(cart !== null){
+            setTotal(cart.reduce((accumulator, currentValue) => accumulator + (currentValue.item.price * currentValue.cantidad), 0));
+            setCantItems(cart.reduce((accumulator, currentValue) => accumulator + currentValue.cantidad, 0));
+            localStorage.setItem("carrito", JSON.stringify(cart));
+        }
     }, [cart]);
     useEffect(() => {
         localStorage.setItem("pedidos", JSON.stringify(pedidos));
     }, [pedidos])
 
     useEffect(() => {
-        if(idOrden.length){
+        if(idOrden !== null){
             const db = firestore;
             const getOrders = ( idOrden ) => {
                 let orders = idOrden.map( (id) => {
@@ -48,7 +50,6 @@ export const CartState = ({ children }) => {
                     let listadoPedidos = docs.map(doc => ({id: doc.id, ...doc.data()}));
                     setPedidos(listadoPedidos.reverse());
                 })
-                .catch(e => console.log(e))
             }
             getOrders( idOrden );
         }
@@ -66,8 +67,11 @@ export const CartState = ({ children }) => {
         ])
     }
     const isInCart = id => {
-        let existe = cart.find(producto => producto.item.id === id)
-        return existe?true:false
+        if(cart !== null){
+            let existe = cart.find(producto => producto.item.id === id)
+            return existe?true:false
+        }
+        return false;
     }
     const removeItem = id => {
         const nuevoCart = cart.filter(producto => producto.item.id !== id)

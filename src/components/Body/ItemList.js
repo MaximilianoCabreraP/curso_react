@@ -9,7 +9,7 @@ const ItemList = ({ item }) => {
                 id={item.id}
                 title={item.title}
                 price={item.price}
-                images={item.images}
+                imagen={item.imagen}
                 stock={item.stock}
             />
     )

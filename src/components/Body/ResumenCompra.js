@@ -71,9 +71,6 @@ const ResumenCompra = () => {
                         collection_orders.add(orden)
                         .then(({ id }) => {
                             setIdOrden([...idOrden, id]);
-                        }).catch((err) =>{
-                            console.log("Error al guardar la orden. ",err);
-                            //TODO: Enviar mensaje al usuario para que entienda lo que está pasando
                         }).finally(() => {
                             let input = {};
                             input["nombre"] = input["apellido"] = input["telefono"] = input["email"] = input["confirmarEmail"] = "";
@@ -81,10 +78,6 @@ const ResumenCompra = () => {
                         });
                         setCarritoEstado(true);
                         clearCart();
-                    })
-                    .catch((err) => {
-                        console.log("Error al commitear el batch. ", err);
-                        //TODO: Enviar mensaje al usuario para que entienda lo que está pasando
                     }).finally(() => {
                         if(handleUserData(inputs)){
                             updateUser();

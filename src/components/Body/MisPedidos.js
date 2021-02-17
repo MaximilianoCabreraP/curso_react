@@ -17,8 +17,6 @@ const MisPedidos = () => {
             setTimeout(() => {
                 setLoading(false);
             }, 600);
-        }else{
-            console.log("Pedidos === null");
         }
     })
 

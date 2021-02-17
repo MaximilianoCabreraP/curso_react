@@ -7,16 +7,11 @@ import { firestore } from "../../firebaseConfig";
 const ItemListContainer = ({ greeting, categorias } ) => {
     const [ items, setItems ] = useState([]);
     const { nombreCategoria } = useParams();
-    //const [ mensajeError, setMensajeError ] = useParams("");
-
+    
     const realizarQuery = (query) =>{
         query.then(({docs}) => {
             setItems(docs.map( doc => ( {id: doc.id, ...doc.data()})))
         })
-        .catch((err)=>{
-            console.log("Error: ", err);
-            //setMensajeError("No se pudieron encontrar productos. Error: ", err);
-        });
     }
     useEffect(() => {
         if(nombreCategoria === undefined){

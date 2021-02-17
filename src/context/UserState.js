@@ -14,7 +14,7 @@ export const UserState = ({ children }) => {
 
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("usuario"));
-        if(user.nombre !== ""){
+        if(user !== null){
             setUsuario(user);
             setLogueado(true);
             let wishList = JSON.parse(localStorage.getItem("wishlist"));

@@ -4,14 +4,14 @@ import CartContext from '../../context/CartContext'
 
 
 const ItemCarrito = ({item, cantidad}) => {
-    const { id, title, photo, stock } = item
+    const { id, title, imagen, stock } = item
     const { removeItem, actualizarCantidad } = useContext(CartContext);
 
     return (
             <>
                 <div className="row no-gutters py-2">
                     <div className="col-sm-2 p-2">
-                        <img alt={`${title}`} src={`${photo}`} className="img-fluid d-block" />
+                        <img alt={`${title}`} src={`${imagen}`} className="img-fluid d-block" />
                     </div>
                     <div className="col-sm-4 p-2">
                         <h6 className="mb-1">{title}</h6>

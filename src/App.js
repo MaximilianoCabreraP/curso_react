@@ -30,9 +30,6 @@ const App = () => {
         .then( ({docs}) =>{
             setCategorias( docs.map( doc => ({id: doc.id, ...doc.data()})) );
         })
-        .catch( (err) => {
-            console.log("error: ",err);
-        })
     }, []);
 
     return(
@@ -50,7 +47,7 @@ const App = () => {
                                     <ItemListContainer categorias={categorias} />
                                 </Route>
                                 <Route path="/item/:id" exact>
-                                    <ItemDetailContainer />
+                                    <ItemDetailContainer categorias={categorias}/>
                                 </Route>
                                 <Route path="/cart" exact>
                                     <Cart />
