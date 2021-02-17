@@ -45,7 +45,6 @@ const NavBar = ( {categorias} ) => {
                         WishListss
                       </NavLink>
                     </Dropdown.Item>
-                    <Dropdown.Item as="span" bsPrefix="none"><NavLink to="/prueba" className="nav-link right-nav-bar">Prueba</NavLink></Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item as="a" href="/" onClick={logout}>Logout</Dropdown.Item>
                   </NavDropdown>
