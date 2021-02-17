@@ -167,15 +167,7 @@ export const UserState = ({ children }) => {
                 )));
                 
                 collection_users.doc(uid).update(newUser)
-                    .then(() => {
-                        console.log("Usuario Actualizado");
-                    }).catch( (err) => {
-                        console.log("No se puedo actualizar el usuario: ",err);
-                    })
             })
-            .catch(( error) => {
-                console.log("No se encontró usuario: ",error);
-            });
     }
     const setToWishList = (id) => {
         let existe = wishlist.find(w => w === id);
