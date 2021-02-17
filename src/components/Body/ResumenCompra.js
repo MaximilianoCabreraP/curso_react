@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 const ResumenCompra = () => {
     const { cart, total, idOrden, setIdOrden, setCarritoEstado, clearCart, cantItems } = useContext(CartContext);
-    const { usuario, handleUserData, updateUser }= useContext(UserContext);
+    const { logueado, usuario, handleUserData, updateUser }= useContext(UserContext);
     const history = useHistory();
     
     const [inputs, setInputs] = useState({
@@ -79,8 +79,10 @@ const ResumenCompra = () => {
                         setCarritoEstado(true);
                         clearCart();
                     }).finally(() => {
-                        if(handleUserData(inputs)){
-                            updateUser();
+                        if(logueado){
+                            if(handleUserData(inputs)){
+                                updateUser();
+                            }
                         }
                         history.push("/mis-pedidos")
                     });

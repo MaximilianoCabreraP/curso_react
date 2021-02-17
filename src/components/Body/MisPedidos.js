@@ -1,15 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import CartContext from '../../context/CartContext'
 
-
-
 import { Link } from 'react-router-dom'
 
 import '../../styles/App.css'
 const MisPedidos = () => {
-    const { setIdOrden, pedidos, setPedidos } = useContext(CartContext);
-    
-    //const [listaOrden, setListaOrden] = useState([])
+    const { setIdOrden, pedidos, setPedidos } = useContext(CartContext);    
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() =>{

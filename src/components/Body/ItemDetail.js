@@ -1,9 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import ItemCount from './ItemCount'
 import CartContext from '../../context/CartContext'
 import UserContext from '../../context/UserContext'
 import { Link } from 'react-router-dom'
 import { FaHeart } from 'react-icons/fa';
+
+import Overlay from 'react-bootstrap/Overlay'
+import Tooltip from 'react-bootstrap/Tooltip'
 
 import "../../styles/Product.css"
 
@@ -16,8 +19,11 @@ const ItemDetail = ({ item }) => {
 	const addToWishlist = (e) => {
 		e.preventDefault();
 		setToWishList(item.id);
+		setShow(!show)
 	}
 
+	const [show, setShow] = useState(false);
+  const target = useRef(null);
 	
 		return (
 			<div className="row no-gutters detail-content">
@@ -32,7 +38,18 @@ const ItemDetail = ({ item }) => {
 					<span className="price-item align-self-center">${price}</span>{" "}
 					<div className="text-center stock mb-2">({stock} disponibles)</div>
 					{ logueado && 
-						<button className="btn btn-danger" onClick={addToWishlist}><FaHeart /></button>
+						<>
+							<button ref={target} onClick={addToWishlist} className="btn btn-danger">
+								<FaHeart />
+							</button>
+							<Overlay target={target.current} show={show} placement="right">
+								{(props) => (
+									<Tooltip id="overlay-example" {...props}>
+										Agregado a Wishlist
+									</Tooltip>
+								)}
+							</Overlay>
+						</>
 					}
 					<div className="item-count">
 						{stock>0?

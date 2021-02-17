@@ -5,6 +5,7 @@ import Loader from './Loader';
 import ItemList from './ItemList';
 
 import { firestore } from "../../firebaseConfig";
+import { Link } from 'react-router-dom';
 
 const Wishlist = () => {
     const { wishlist } = useContext(UserContext);
@@ -46,7 +47,9 @@ const Wishlist = () => {
                     ):(
                         <div className="container">
                             <div className="row">
-                                <div className="col-12 text-center">Cargando productos...</div>
+                                <div className="col-12 text-center mb-2"><h3>No tenés ningún producto en tu Wishlist</h3></div>
+                                <div className="col-5"></div>
+                                <Link to="/" className="btn btn-primary col-2 text-center">ir al listado</Link>
                             </div>
                         </div>
                     )}

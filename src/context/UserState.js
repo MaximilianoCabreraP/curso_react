@@ -105,7 +105,7 @@ export const UserState = ({ children }) => {
             firestore.collection("users").get()
             .then(({docs}) => {
                 let users = docs.map( doc => ({id: doc.id, ...doc.data()}) );
-                let dataUser = users.map((u) => (u.id === user.uid && u))
+                let dataUser = users.filter(u => ( u.id === user.uid));
                 let loguedUser = ({
                     id: dataUser[0].id,
                     nombre: dataUser[0].nombre,
@@ -137,7 +137,6 @@ export const UserState = ({ children }) => {
     const logout = () => {
         firebase.auth().signOut()
         .then(() =>{
-            setLogueado(false);
             setUsuario({
                 id: "",
                 nombre: "",
@@ -145,6 +144,7 @@ export const UserState = ({ children }) => {
                 telefono: "",
                 email: ""
             });
+            setLogueado(false);
             history.push("/");
         })
     }
