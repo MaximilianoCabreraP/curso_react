@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import CartWidget from "./CartWidget";
 import UserContext from "../../context/UserContext";
 
-import Dropdown from 'react-bootstrap/dropdown'
+import Dropdown from 'react-bootstrap/Dropdown'
 import { Navbar, Nav, NavDropdown }  from 'react-bootstrap'
 
 import "../../styles/Cart.css";
@@ -45,6 +45,7 @@ const NavBar = ( {categorias} ) => {
                         WishListss
                       </NavLink>
                     </Dropdown.Item>
+
                     <Dropdown.Divider />
                     <Dropdown.Item as="a" href="/" onClick={logout}>Logout</Dropdown.Item>
                   </NavDropdown>

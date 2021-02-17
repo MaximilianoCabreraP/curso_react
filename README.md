@@ -23,16 +23,20 @@ Además de esto, contamos con un sistema de registro de usuarios. Una vez comple
 Esto nos permite guardar productos en nuestra Wishlist, y al momento de finalizar la compra nos ahorra tiempo de completado de información.
 
 
-## Librerías, Hooks y Herramientas utilizados
+## Hooks, Herramientas y Librerías utilizadas
 <ul>
     <li>useState</li>
     <li>useEffect</li>
     <li>useParams</li>
     <li>useHistory</li>
     <li>useContext</li>
+</ul>
+<ul>
     <li>BrowserRouter</li>
     <li>Switch</li>
     <li>Route</li>
+</ul>
+<ul>
     <li>Bootstrap 4</li>
     <li>bootstrap-icons</li>
     <li>react-bootstrap</li>
