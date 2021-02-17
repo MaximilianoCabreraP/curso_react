@@ -1,6 +1,6 @@
 # Proyecto integrador Curso de React JS
 
-<h3><a target="_blank">https://curso-react-coderhouse.web.app/</a></h3>
+<h3>https://curso-react-coderhouse.web.app/</h3>
 
 El proyecto es un ecommerce que se encuentra finalizado.
 En la parte superior tenemos la barra de navegación (NavBar) donde se encuentran las categorías.
@@ -27,8 +27,6 @@ Esto nos permite guardar productos en nuestra Wishlist, y al momento de finaliza
     <li>Uso de la página: https://drive.google.com/file/d/1CwebVLu08-EkAvvQQmgGTIsdPzJ7jtmZ/preview</li>
     <li>Registro y Login: https://drive.google.com/file/d/1CSfnvgAluRCpCshBU7XF6Mt_742nldvH/preview</li>
     <li>Manejo de Errores: https://drive.google.com/file/d/1-Uz-eL4nV4y6oxKEpyOhM27Z9pCs1Wak/preview</li>
-    <li></li>
-    <li></li>
 </ul>
 
 ## Hooks, Herramientas y Librerías utilizadas
